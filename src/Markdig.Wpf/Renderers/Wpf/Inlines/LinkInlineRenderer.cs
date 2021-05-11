@@ -25,12 +25,15 @@ namespace Markdig.Renderers.Wpf.Inlines
             if (renderer == null) throw new ArgumentNullException(nameof(renderer));
             if (link == null) throw new ArgumentNullException(nameof(link));
 
+            //
+            // TODO:
+            // this 
             var url = link.GetDynamicUrl != null ? link.GetDynamicUrl() ?? link.Url : link.Url;
 
-            if (!Uri.IsWellFormedUriString(url, UriKind.RelativeOrAbsolute))
-            {
-                url = "#";
-            }
+            //if (!Uri.IsWellFormedUriString(url, UriKind.RelativeOrAbsolute))
+            //{
+            //    url = "#";
+            //}
 
             if (link.IsImage)
             {

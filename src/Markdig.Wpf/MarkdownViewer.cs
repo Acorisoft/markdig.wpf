@@ -8,6 +8,11 @@ using System.Windows.Documents;
 
 namespace Markdig.Wpf
 {
+    public class FlowDocumentScrollViewerExtended : FlowDocumentScrollViewer
+    {
+        
+    }
+
     /// <summary>
     /// A markdown viewer control.
     /// </summary>

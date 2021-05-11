@@ -44,6 +44,21 @@ namespace Markdig.Wpf
         }
 
         /// <summary>
+        /// Converts a Markdown string to a Markdown Document.
+        /// </summary>
+        /// <param name="markdown">A Markdown text.</param>
+        /// <param name="pipeline">The pipeline used for the conversion.</param>
+        /// <returns>The result of the conversion</returns>
+        /// <exception cref="System.ArgumentNullException">if markdown variable is null</exception>
+        public static MarkdownDocument ToDocument(string markdown, MarkdownPipeline? pipeline = null)
+        {
+            if (markdown == null) throw new ArgumentNullException(nameof(markdown));
+            pipeline = pipeline ?? new MarkdownPipelineBuilder().Build();
+
+
+            return Markdig.Markdown.Parse(markdown, pipeline);
+        }
+        /// <summary>
         /// Converts a Markdown string to XAML.
         /// </summary>
         /// <param name="markdown">A Markdown text.</param>

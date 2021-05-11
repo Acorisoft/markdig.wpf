@@ -98,8 +98,8 @@
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="markdig:MarkdownViewer">
-          <FlowDocumentScrollViewer Document="{TemplateBinding Document}"
-                                    ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+          <markdig:FlowDocumentScrollViewerExtended Document="{TemplateBinding Document}"
+                                                    ScrollViewer.VerticalScrollBarVisibility="Auto"/>
         </ControlTemplate>
       </Setter.Value>
     </Setter>

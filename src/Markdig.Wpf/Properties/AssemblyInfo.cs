@@ -3,8 +3,10 @@
 // See the LICENSE.md file in the project root for more information.
 
 using System.Windows;
+using System.Windows.Markup;
 
 [assembly: ThemeInfo(ResourceDictionaryLocation.SourceAssembly, ResourceDictionaryLocation.SourceAssembly)]
+[assembly: XmlnsDefinition("https://github.com/Acorisoft/markdig.wpf", "Markdig.Wpf")]
 
 namespace Markdig.Wpf
 {
