@@ -42,6 +42,33 @@ namespace Markdig.Wpf
 
             return result;
         }
+        
+        /// <summary>
+        /// Converts a Markdown string to a FlowDocument.
+        /// </summary>
+        /// <param name="document">A Markdown document.</param>
+        /// <param name="pipeline">The pipeline used for the conversion.</param>
+        /// <returns>The result of the conversion</returns>
+        /// <exception cref="System.ArgumentNullException">if markdown variable is null</exception>
+        public static FlowDocument ToFlowDocument(MarkdownDocument document, MarkdownPipeline? pipeline = null, WpfRenderer? renderer = null)
+        {
+            if (document == null) throw new ArgumentNullException(nameof(document));
+            pipeline = pipeline ?? new MarkdownPipelineBuilder().Build();
+
+            // We override the renderer with our own writer
+            var result = new FlowDocument();
+
+            if (renderer == null)
+                renderer = new WpfRenderer(result);
+            else
+                renderer.LoadDocument(result);
+
+            pipeline.Setup(renderer);
+
+            renderer.Render(document);
+
+            return result;
+        }
 
         /// <summary>
         /// Converts a Markdown string to a Markdown Document.
