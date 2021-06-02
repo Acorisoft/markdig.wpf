@@ -10,7 +10,16 @@ namespace Markdig.Wpf
 {
     public class FlowDocumentScrollViewerExtended : FlowDocumentScrollViewer
     {
+        private const string ScrollViewerName = "PART_ContentHost";
+        private ScrollViewer PART_ContentHost;
         
+        public override void OnApplyTemplate()
+        {
+            PART_ContentHost = GetTemplateChild(ScrollViewerName) as ScrollViewer;
+            base.OnApplyTemplate();
+        }
+
+        public ScrollViewer ScrollViewer => PART_ContentHost;
     }
 
     /// <summary>
