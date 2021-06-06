@@ -51,5 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\markdig\src\Markdig\Markdig.csproj" />
+    <ProjectReference Include="..\..\..\src\Acorisoft.Extensions.Platforms\Acorisoft.Extensions.Platforms.csproj" />
+    <ProjectReference Include="..\..\..\src\Acorisoft.Studio.Documents\Acorisoft.Studio.Documents.csproj" />
   </ItemGroup>
 </Project>
