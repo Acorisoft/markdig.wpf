@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media.Imaging;
-using Acorisoft.Extensions.Platforms.Services;
+using Acorisoft.Extensions.Platforms.Windows.Services;
 using Acorisoft.Studio.Core;
 using Markdig.Syntax.Inlines;
 using Markdig.Wpf;
