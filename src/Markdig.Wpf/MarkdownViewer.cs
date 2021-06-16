@@ -5,21 +5,36 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Media;
 
 namespace Markdig.Wpf
 {
     public class FlowDocumentScrollViewerExtended : FlowDocumentScrollViewer
     {
         private const string ScrollViewerName = "PART_ContentHost";
-        private ScrollViewer PART_ContentHost;
+        private ScrollViewer? _contentHost;
         
         public override void OnApplyTemplate()
         {
-            PART_ContentHost = GetTemplateChild(ScrollViewerName) as ScrollViewer;
+            _contentHost = GetTemplateChild(ScrollViewerName) as ScrollViewer;
             base.OnApplyTemplate();
         }
 
-        public ScrollViewer ScrollViewer => PART_ContentHost;
+        public IContentHost GetIContentHost()
+        {
+            IContentHost ich = null;
+            if (RenderScope != null && VisualTreeHelper.GetChildrenCount(RenderScope) > 0)
+            {
+                ich = VisualTreeHelper.GetChild(RenderScope, 0) as IContentHost;
+            }
+
+            return ich;
+        }
+        
+        private DependencyObject RenderScope => (_contentHost?.Content as DependencyObject)!;
+
+        // ReSharper disable once ConvertToAutoPropertyWithPrivateSetter
+        public ScrollViewer ScrollViewer => _contentHost!;
     }
 
     /// <summary>
@@ -59,8 +74,8 @@ namespace Markdig.Wpf
         /// </summary>
         public FlowDocument? Document
         {
-            get { return (FlowDocument)GetValue(DocumentProperty); }
-            protected set { SetValue(DocumentPropertyKey, value); }
+            get => (FlowDocument)GetValue(DocumentProperty);
+            protected set => SetValue(DocumentPropertyKey, value);
         }
 
         /// <summary>
@@ -68,8 +83,8 @@ namespace Markdig.Wpf
         /// </summary>
         public string? Markdown
         {
-            get { return (string)GetValue(MarkdownProperty); }
-            set { SetValue(MarkdownProperty, value); }
+            get => (string)GetValue(MarkdownProperty);
+            set => SetValue(MarkdownProperty, value);
         }
 
         /// <summary>
@@ -77,8 +92,8 @@ namespace Markdig.Wpf
         /// </summary>
         public MarkdownPipeline Pipeline
         {
-            get { return (MarkdownPipeline)GetValue(PipelineProperty); }
-            set { SetValue(PipelineProperty, value); }
+            get => (MarkdownPipeline)GetValue(PipelineProperty);
+            set => SetValue(PipelineProperty, value);
         }
 
         private static void MarkdownChanged(object sender, DependencyPropertyChangedEventArgs e)
